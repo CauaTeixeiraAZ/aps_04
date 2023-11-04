@@ -69,15 +69,15 @@ int main(){
  		
   //imprime os tempos na tela
 	system("color f4");
-	printf("|----------------------------------------|\n");
- 	printf("|  Tempos de execucoes em millisegundos  |\n");
- 	printf("|----------------------------------------|\n");
- 	printf("| Bubble Sort | Quick Sort | Merge Sort  |\n");
- 	printf("|----------------------------------------|\n");
+	printf("|----------------------------------------------|\n");
+ 	printf("|     Tempo de execucoes em millisegundos      |\n");
+ 	printf("|----------------------------------------------|\n");
+ 	printf("|  Bubble Sort   |  Quick Sort  |  Merge Sort  |\n");
+ 	printf("|----------------------------------------------|\n");
 	for(a = 0; a < TESTES; a++ ){
-		printf("|  %f  |  %f  |  %f  | \n", vetTimes[0][a], vetTimes[1][a], vetTimes[2][a]);
+		printf("|   %f   |   %f   |   %f   | \n", vetTimes[0][a], vetTimes[1][a], vetTimes[2][a]);
 	}
-	printf("|----------------------------------------|");
+	printf("|----------------------------------------------|\n");
 }
 
 
