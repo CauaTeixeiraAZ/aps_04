@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //clock(), CLOCKS_PER_SEC e clock_t
+#include <string.h>
 
-#define TAM 10000 //constante para tamanho do vetor
+#define TAM 100000 //constante para tamanho do vetor
 #define TESTES 5
 
 void resetVetor(int *vet1, int *vet2);
@@ -18,44 +19,71 @@ int main(){
  	int vetAux[TAM];
  	double vetTimes[3][TESTES];
  	int a;
+ 	char choice[1];
 
 
-
+	system("color f4");
   //geração aleatória dos valores do vetor
- 	for(a = 0; a < TAM; a++){
+  	system("cls");
+ 	printf("\n Gerando lista aleatoria...");
+
+	 for(a = 0; a < TAM; a++){
+ 		
 		vetor[a] = rand() % 100;
 		vetAux[a] = vetor[a];
  	}
+ 	system("cls");
+ 	
+ 	
+ 	
+ 	printf("\n Lista gerada");
+	system("cls");
 
+	fflush(stdin);
+	printf("\n Deseja exibir a lista gerada(s/n)? \n");
+ 	scanf("%c", &choice);
+ 	
+ 	if(strcmp(choice, "s") == 0 || strcmp(choice, "S") == 0 ){
+ 		for(a = 0; a < TAM; a++){
+ 			printf(" %d",vetor[a]);
+		}
+		choice[1] = "n";
+	}
+ 	printf("\n");
+	system("PAUSE");
+
+	system("cls");
  
   // armazenamento dos tempos de execuçao
   // de cada ordenaçao dos vetors
   
   // bubbleSort
+	printf("\n Ordenando por BubbleSort...");
 	for( a = 0; a < TESTES; a++){
 		t = clock();
-		
- 		bubbleSort(vetor);
  		
+ 		quick_sort(vetor, 0, TAM - 1);
  		vetTimes[0][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
  		
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
+	system("cls");
 	
   //quickSort
-  
+	printf("\n Ordenando por quickSort...");
   	for( a = 0; a < TESTES; a++){
 		t = clock();
-
-		quick_sort(vetor, 0, TAM - 1);
+		bubbleSort(vetor);
+  		
 
  		vetTimes[1][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
 
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
-  
+	system("cls");
+	
   //mergeSort
- 	
+ 	printf("\n Ordenando por mergeSort..");
 	for( a = 0; a < TESTES; a++){
 		t = clock();
 
@@ -65,10 +93,27 @@ int main(){
 
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
+	system("cls");
 	
- 		
+	
+	fflush(stdin);
+	printf("\n Deseja exibir o vetor ordenado(s/n)?");
+	scanf("%c", &choice);
+	
+	if(strcmp(choice, "s") == 0 || strcmp(choice, "S") == 0 ){
+		mergesort(vetor, TAM);
+ 		for(a = 0; a < TAM; a++){
+ 			printf(" %d ",vetor[a]);
+		 }
+		 choice[1] = "n";
+	 }
+	printf("\n");
+	system("PAUSE");
+ 	system("cls");
+ 	
+ 	
   //imprime os tempos na tela
-	system("color f4");
+	
 	printf("|----------------------------------------------|\n");
  	printf("|     Tempo de execucoes em millisegundos      |\n");
  	printf("|----------------------------------------------|\n");
@@ -77,7 +122,9 @@ int main(){
 	for(a = 0; a < TESTES; a++ ){
 		printf("|   %f   |   %f   |   %f   | \n", vetTimes[0][a], vetTimes[1][a], vetTimes[2][a]);
 	}
+
 	printf("|----------------------------------------------|\n");
+	
 }
 
 
