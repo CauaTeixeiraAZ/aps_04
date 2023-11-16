@@ -3,7 +3,7 @@
 #include <time.h> //clock(), CLOCKS_PER_SEC e clock_t
 #include <string.h>
 
-#define TAM 100000 //constante para tamanho do vetor
+#define TAM 10000 //constante para tamanho do vetor
 #define TESTES 5
 
 void resetVetor(int *vet1, int *vet2);
@@ -62,7 +62,7 @@ int main(){
 	for( a = 0; a < TESTES; a++){
 		t = clock();
  		
- 		quick_sort(vetor, 0, TAM - 1);
+ 		bubbleSort(vetor);
  		vetTimes[0][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
  		
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
@@ -73,8 +73,8 @@ int main(){
 	printf("\n Ordenando por quickSort...");
   	for( a = 0; a < TESTES; a++){
 		t = clock();
-		bubbleSort(vetor);
-  		
+		
+  		quick_sort(vetor, 0, TAM - 1);
 
  		vetTimes[1][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
 
