@@ -3,7 +3,7 @@
 #include <time.h> //clock(), CLOCKS_PER_SEC e clock_t
 #include <string.h>
 
-#define TAM 10000 //constante para tamanho do vetor
+#define TAM 20000 //constante para tamanho do vetor
 #define TESTES 5
 
 void resetVetor(int *vet1, int *vet2);
@@ -23,12 +23,12 @@ int main(){
 
 
 	system("color f4");
+	system("cls");
+	
+	
   //geração aleatória dos valores do vetor
-  	system("cls");
  	printf("\n Gerando lista aleatoria...");
-
 	 for(a = 0; a < TAM; a++){
- 		
 		vetor[a] = rand() % 100;
 		vetAux[a] = vetor[a];
  	}
@@ -48,9 +48,10 @@ int main(){
  			printf(" %d",vetor[a]);
 		}
 		choice[1] = "n";
+		printf("\n");
+		system("PAUSE");
 	}
- 	printf("\n");
-	system("PAUSE");
+ 	
 
 	system("cls");
  
@@ -58,39 +59,31 @@ int main(){
   // de cada ordenaçao dos vetors
   
   // bubbleSort
-	printf("\n Ordenando por BubbleSort...");
+	printf("\n Realizando testes  com BubbleSort...");
 	for( a = 0; a < TESTES; a++){
 		t = clock();
- 		
  		bubbleSort(vetor);
  		vetTimes[0][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
- 		
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
 	system("cls");
 	
   //quickSort
-	printf("\n Ordenando por quickSort...");
+	printf("\n Realizando testes  com  quickSort...");
   	for( a = 0; a < TESTES; a++){
 		t = clock();
-		
   		quick_sort(vetor, 0, TAM - 1);
-
  		vetTimes[1][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
-
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
 	system("cls");
 	
   //mergeSort
- 	printf("\n Ordenando por mergeSort..");
+ 	printf("\n Realizando testes  com  mergeSort..");
 	for( a = 0; a < TESTES; a++){
 		t = clock();
-
  		mergesort(vetor, TAM);
-
  		vetTimes[2][a] = ((double)(clock() - t)/((CLOCKS_PER_SEC/1000)));//conversão para double e armazenamento
-
  		resetVetor(vetor, vetAux);//resetando vetor ao estado original
 	}
 	system("cls");
@@ -105,15 +98,14 @@ int main(){
  		for(a = 0; a < TAM; a++){
  			printf(" %d ",vetor[a]);
 		 }
-		 choice[1] = "n";
+		choice[1] = "n";
+		printf("\n");
+		system("PAUSE");
 	 }
-	printf("\n");
-	system("PAUSE");
  	system("cls");
  	
  	
   //imprime os tempos na tela
-	
 	printf("|----------------------------------------------|\n");
  	printf("|     Tempo de execucoes em millisegundos      |\n");
  	printf("|----------------------------------------------|\n");
@@ -122,7 +114,6 @@ int main(){
 	for(a = 0; a < TESTES; a++ ){
 		printf("|   %f   |   %f   |   %f   | \n", vetTimes[0][a], vetTimes[1][a], vetTimes[2][a]);
 	}
-
 	printf("|----------------------------------------------|\n");
 	
 }
@@ -135,8 +126,6 @@ void resetVetor(int vet1[TAM], int vet2[TAM]){
 			vet1[a] = vet2[a];
 		}
 }
-
-
 
 void bubbleSort (int v[TAM]) {
     int a, b, aux;
@@ -151,11 +140,8 @@ void bubbleSort (int v[TAM]) {
     }
 }
 
-
-
 void quick_sort(int *a, int left, int right) {
     int i, j, x, y;
-
     i = left;
     j = right;
     x = a[(left + right) / 2];
@@ -216,14 +202,10 @@ void merge(int *v, int *c, int i, int m, int f) {
   z = i;
 
   while (iv <= m && ic <= f) {
-    
-
     if (c[iv] <= c[ic]) v[z++] = c[iv++];
     else v[z++] = c[ic++];
   }
-
   while (iv <= m) v[z++] = c[iv++];
-
   while (ic <= f) v[z++] = c[ic++];
 }
 
